@@ -6,12 +6,11 @@ func _physics_process(_delta):
 	
   direction = Vector2(Input.get_axis("ui_left", "ui_right"),Input.get_axis("ui_up", "ui_down")).normalized()
   if direction:
-    _velocity += direction * SPEED_OLD * _delta * 60
-    if _velocity.length() > MAX_SPEED:
-      _velocity = _velocity.normalized() * MAX_SPEED
+    velocity += direction * SPEED_OLD * _delta * 60
+    if velocity.length() > MAX_SPEED:
+      velocity = velocity.normalized() * MAX_SPEED
   else:
-    _velocity = Vector2(move_toward(_velocity.x, 0, SLOW_SPEED), move_toward(_velocity.y, 0, SLOW_SPEED))
-  _velocity *= _delta * 60
-  velocity = Vector2(_velocity.y, -_velocity.x).rotated(mouse_angel)
+    velocity = Vector2(move_toward(velocity.x, 0, SLOW_SPEED), move_toward(velocity.y, 0, SLOW_SPEED))
+  velocity *= _delta * 60
   print(velocity)
   move_and_slide()
